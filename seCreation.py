@@ -173,7 +173,7 @@ if __name__ == '__main__':
         print('SE connected to controller')
       if seg['serviceEngineGroup'] != 'Default-Group':
         params = {'name': seg['serviceEngineGroup'], 'cloud_uuid': cloud_no_access_vcenter_uuid}
-        seg_uuid = defineClass.getObject('serviceenginegroup', params)['results']['0']['se_connected']
+        seg_uuid = defineClass.getObject('serviceenginegroup', params)['results'][0]['uuid']
 
   os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_INSECURE=true; govc library.rm {2}'.format(vcenter['dc'], vsphere_url, cl_name))
 
