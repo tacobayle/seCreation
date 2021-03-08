@@ -29,7 +29,7 @@ if __name__ == '__main__':
   vsphere_username= sys.argv[7]
   vsphere_password= sys.argv[8]
   ova_path = sys.argv[9]
-  cl_name = 'Easy Avi-CL-SE-NoAccess'
+  cl_name = 'Easy-Avi-CL-SE-NoAccess'
   tenant = "admin"
   if seg['numberOfSe'] == 0:
     print('no SE to create')
