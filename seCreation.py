@@ -62,7 +62,7 @@ if __name__ == '__main__':
     for se in range (1, seg['numberOfSe'] + 1):
       print(se)
       print('dhcp is true')
-      se_name = 'EasyAvi-' + seg['name'] +  '-SE' + str(se)
+      se_name = 'EasyAvi - ' + seg['name'] +  ' - SE' + str(se)
       properties = {
                     'IPAllocationPolicy': 'dhcpPolicy',
                     'IPProtocol': 'IPv4',
@@ -136,10 +136,10 @@ if __name__ == '__main__':
       with open('properties.json', 'w') as f:
           json.dump(properties, f)
       print('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc library.deploy -folder=/{0}/vm/{3} -options=./properties.json /{4}/se {5}'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], seg['folder'], cl_name, se_name))
-      os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc library.deploy -folder=/{0}/vm/{3} -options=./properties.json /{4}/se {5}'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], seg['folder'], cl_name, se_name))
-#       os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.change -vm {3} -c {4} -m {5}'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name, seg['vcpus_per_se'], seg['memory_per_se']))
-#       os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.disk.change -vm {3} -size {4}'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name, seg['disk_per_se']))
-#       os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.power -on {3}'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name))
+      os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc library.deploy -folder=/{0}/vm/{3} -options=./properties.json /{4}/se \'{5}\''.format(vcenter['dc'], vsphere_url, vcenter['datastore'], seg['folder'], cl_name, se_name))
+      os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.change -vm {3} -c {4} -m \'{5}\''.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name, seg['vcpus_per_se'], seg['memory_per_se']))
+      os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.disk.change -vm \'{3}\' -size {4}'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name, seg['disk_per_se']))
+      os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.power -on \'{3}\''.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name))
 #       time.sleep(180)
 #       os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.ip {3} | tee ip.txt'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name))
 #       with open('ip.txt', 'r') as file:
