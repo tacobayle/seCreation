@@ -57,7 +57,7 @@ if __name__ == '__main__':
   print(ova_path)
   os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_INSECURE=true; govc folder.create /{0}/vm/{2}'.format(vcenter['dc'], vsphere_url, seg['folder']))
   os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_INSECURE=true; govc library.create {2}'.format(vcenter['dc'], vsphere_url, cl_name))
-  os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_INSECURE=true; govc library.import CLTest {2}'.format(vcenter['dc'], vsphere_url, ova_path))
+  os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_INSECURE=true; govc library.import {2} {3}'.format(vcenter['dc'], vsphere_url, cl_name, ova_path))
   if seg['dhcp'] == True:
     for se in range (1, seg['numberOfSe'] + 1):
       print(se)
