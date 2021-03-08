@@ -50,7 +50,7 @@ if __name__ == '__main__':
   defineClass = aviSession(avi_credentials['controller'], avi_credentials['username'], avi_credentials['password'], tenant)
   cluster_uuid = defineClass.getObject('cluster', '')['uuid']
   print(cluster_uuid)
-  data = {"cloud_uuid": cloud_uuid}
+  data = {"cloud_uuid": cloud_no_access_vcenter_uuid}
   token = defineClass.getObject('securetoken-generate', data)
   print(token)
   print(seg['folder'])
