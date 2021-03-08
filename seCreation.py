@@ -62,7 +62,7 @@ if __name__ == '__main__':
     for se in range (1, seg['numberOfSe'] + 1):
       print(se)
       print('dhcp is true')
-      se_name = 'EasyAvi - ' + seg['name'] +  ' - SE' + str(se)
+      se_name = 'EasyAvi-' + seg['name'] +  '-SE' + str(se)
       properties = {
                     'IPAllocationPolicy': 'dhcpPolicy',
                     'IPProtocol': 'IPv4',
