@@ -83,11 +83,11 @@ if __name__ == '__main__':
                                         },
                                         {
                                           'Key': 'AVICNTRL_AUTHTOKEN',
-                                          'Value': 'placeholder'
+                                          'Value': 'token'
                                         },
                                         {
                                           'Key': 'AVICNTRL_CLUSTERUUID',
-                                          'Value': 'placeholder'
+                                          'Value': 'cluster_uuid'
                                         },
                                         {
                                           'Key': 'avi.mgmt-ip.SE',
@@ -169,7 +169,7 @@ if __name__ == '__main__':
           if count == 8:
             print('timeout')
             break
-      if  result == True:
+      if result == True:
         print('SE connected to controller')
       if seg['serviceEngineGroup'] != 'Default-Group':
         params = {'name': seg['serviceEngineGroup'], 'cloud_uuid': cloud_no_access_vcenter_uuid}
