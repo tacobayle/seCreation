@@ -11,9 +11,9 @@ class aviSession:
   def debug(self):
     print("controller is {0}, username is {1}, password is {2}, tenant is {3}".format(self.fqdn, self.username, self.password, self.tenant))
 
-  def getObject(self, objectUrl, objectData):
+  def getObject(self, objectUrl, objectParams):
     api = ApiSession.get_session(self.fqdn, self.username, self.password, self.tenant)
-    result = api.get(objectUrl, data=objectData)
+    result = api.get(objectUrl, params=objectParams)
     return result.json()
 
 if __name__ == '__main__':
@@ -50,8 +50,8 @@ if __name__ == '__main__':
   defineClass = aviSession(avi_credentials['controller'], avi_credentials['username'], avi_credentials['password'], tenant)
   cluster_uuid = defineClass.getObject('cluster', '')['uuid']
   print(cluster_uuid)
-  data = {"cloud_uuid": cloud_no_access_vcenter_uuid}
-  token = defineClass.getObject('securetoken-generate', data)
+  params = {"cloud_uuid": cloud_no_access_vcenter_uuid}
+  token = defineClass.getObject('securetoken-generate', params)
   print(token)
   print(seg['folder'])
   print(ova_path)
@@ -145,12 +145,12 @@ if __name__ == '__main__':
       with open('ip.txt', 'r') as file:
         ip = file.read().replace('\n', '')
       print(ip)
-      data = {"name": ip}
+      params = {'name': ip}
       time.sleep(60)
       se = 0
       count = 0
       while se != 1:
-        se = defineClass.getObject('serviceengine', data)['count']
+        se = defineClass.getObject('serviceengine', params)['count']
         print(se)
         time.sleep(20)
         count += 1
@@ -162,7 +162,7 @@ if __name__ == '__main__':
       if se == 1:
         print('SE seen by controller')
         while result != True:
-          result = defineClass.getObject('serviceengine', data)['results']['0']['se_connected']
+          result = defineClass.getObject('serviceengine', params)['results']['0']['se_connected']
           print(result)
           time.sleep(20)
           count += 1
@@ -171,6 +171,10 @@ if __name__ == '__main__':
             break
       if  result == True:
         print('SE connected to controller')
+      if seg['serviceEngineGroup'] != 'Default-Group':
+        params = {'name': seg['serviceEngineGroup'], 'cloud_uuid': cloud_no_access_vcenter_uuid}
+        seg_uuid = defineClass.getObject('serviceenginegroup', params)['results']['0']['se_connected']
+
   os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_INSECURE=true; govc library.rm {2}'.format(vcenter['dc'], vsphere_url, cl_name))
 
 
