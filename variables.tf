@@ -160,7 +160,7 @@ variable "no_access_vcenter" {
     serviceEngineGroup = [
       {
         name = "Default-Group"
-        folder = "EasyAvi - SEG - Default-Group"
+        folder = "NicSEG"
         numberOfSe = 2
         dhcp = true
         ha_mode = "HA_MODE_SHARED"
