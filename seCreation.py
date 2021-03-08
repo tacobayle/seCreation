@@ -83,11 +83,11 @@ if __name__ == '__main__':
                                         },
                                         {
                                           'Key': 'AVICNTRL_AUTHTOKEN',
-                                          'Value': 'token'
+                                          'Value': token
                                         },
                                         {
                                           'Key': 'AVICNTRL_CLUSTERUUID',
-                                          'Value': 'cluster_uuid'
+                                          'Value': cluster_uuid
                                         },
                                         {
                                           'Key': 'avi.mgmt-ip.SE',
