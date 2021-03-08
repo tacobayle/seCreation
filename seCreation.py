@@ -145,6 +145,42 @@ if __name__ == '__main__':
       with open('ip.txt', 'r') as file:
         ip = file.read().replace('\n', '')
       print(ip)
+      data = {"name": ip}
+      time.sleep(60)
+      se = 0
+      count = 0
+      while se != 1:
+        se = defineClass.getObject('serviceengine', data)['count']
+        print(se)
+        time.sleep(20)
+        count += 1
+        if count == 8:
+          print('timeout')
+          break
+      result = ''
+      count = 0
+      if se == 1:
+        print('SE seen by controller')
+        while result != True:
+          result = defineClass.getObject('serviceengine', data)['results']['0']['se_connected']
+          print(result)
+          time.sleep(20)
+          count += 1
+          if count == 8:
+            print('timeout')
+            break
+      if  result == True:
+        print('SE connected to controller')
+  os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_INSECURE=true; govc library.rm {2}'.format(vcenter['dc'], vsphere_url, cl_name))
+
+
+
+
+
+
+
+
+
 #   if seg['dhcp'] == False:
 #     print('dhcp is false')
 #   defineClass = aviSession(avi_credentials['controller'], avi_credentials['username'], avi_credentials['password'], tenant)
