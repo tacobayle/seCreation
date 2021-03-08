@@ -140,10 +140,11 @@ if __name__ == '__main__':
       os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.change -vm \'{3}\' -c {4} -m {5}'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name, seg['vcpus_per_se'], seg['memory_per_se']))
       os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.disk.change -vm \'{3}\' -size {4}G'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name, seg['disk_per_se']))
       os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.power -on \'{3}\''.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name))
-#       time.sleep(180)
-#       os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.ip {3} | tee ip.txt'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name))
-#       with open('ip.txt', 'r') as file:
-#         ip = file.read().replace('\n', '')
+      time.sleep(180)
+      os.system('export GOVC_DATACENTER={0}; export GOVC_URL={1}; export GOVC_GOVC_DATASTORE={2}; export GOVC_INSECURE=true; govc vm.ip \'{3}\' | tee ip.txt'.format(vcenter['dc'], vsphere_url, vcenter['datastore'], se_name))
+      with open('ip.txt', 'r') as file:
+        ip = file.read().replace('\n', '')
+      print(ip)
 #   if seg['dhcp'] == False:
 #     print('dhcp is false')
 #   defineClass = aviSession(avi_credentials['controller'], avi_credentials['username'], avi_credentials['password'], tenant)
