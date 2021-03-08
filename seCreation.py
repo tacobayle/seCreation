@@ -83,7 +83,7 @@ if __name__ == '__main__':
                                         },
                                         {
                                           'Key': 'AVICNTRL_AUTHTOKEN',
-                                          'Value': token
+                                          'Value': token['auth_token']
                                         },
                                         {
                                           'Key': 'AVICNTRL_CLUSTERUUID',
